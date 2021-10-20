@@ -7,19 +7,16 @@
     "web": "expo start --web",
     "eject": "expo eject"
   },
-  "lint-staged": {
-    "src/**/*.{ts,tsx}": [
-      "yarn lint --fix",
-      "yarn prettier --write"
-    ],
-    "*.js": "eslint --cache --fix"
-  },
   "dependencies": {
+    "@react-navigation/native": "^6.0.6",
+    "@react-navigation/native-stack": "^6.2.5",
     "expo": "~42.0.1",
     "expo-status-bar": "~1.0.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
+    "react-native-safe-area-context": "3.2.0",
+    "react-native-screens": "~3.4.0",
     "react-native-web": "~0.13.12"
   },
   "devDependencies": {
@@ -38,8 +35,6 @@
     "eslint-plugin-promise": "5.1.0",
     "eslint-plugin-react": "7.26.1",
     "eslint-plugin-react-hooks": "4.2.0",
-    "husky": "7.0.2",
-    "lint-staged": "11.2.3",
     "prettier": "2.4.1",
     "typescript": "~4.0.0"
   },
