@@ -1,3 +1,3 @@
-import SCHEDULE_ICON from './Schedule.svg'
+import SCHEDULE_ICON from './Schedule.png'
 
 export { SCHEDULE_ICON }
