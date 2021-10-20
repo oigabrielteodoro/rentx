@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+// import { useNavigation } from '@react-navigation/native'
 import { Animated, useWindowDimensions } from 'react-native'
 
 export function useOnboard() {
@@ -6,6 +7,7 @@ export function useOnboard() {
   const animationOpacity = useRef(new Animated.Value(1)).current
   const animationTransformX = useRef(new Animated.Value(0)).current
 
+  // const navigation = useNavigation()
   const { width } = useWindowDimensions()
 
   function next() {
@@ -22,7 +24,11 @@ export function useOnboard() {
         toValue: width,
         duration: 1000,
         useNativeDriver: true,
-      }).start()
+      }).start(({ finished }) => {
+        if (finished) {
+          // navigation.navigate('Welcome')
+        }
+      })
     }
   }
 
