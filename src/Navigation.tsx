@@ -3,7 +3,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import { Onboarding, Welcome } from './pages'
 
-const Stack = createNativeStackNavigator()
+export type NavigatorProps = {
+  Welcome: undefined
+  Onboarding: undefined
+}
+
+const Stack = createNativeStackNavigator<NavigatorProps>()
 
 export function Navigation() {
   return (

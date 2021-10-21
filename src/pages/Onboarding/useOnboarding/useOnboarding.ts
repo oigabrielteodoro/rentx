@@ -1,17 +1,26 @@
 import { useCallback, useRef, useState } from 'react'
-// import { useNavigation } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import {
   Animated,
   FlatList,
   useWindowDimensions,
   ViewToken,
 } from 'react-native'
+
+import { NavigatorProps } from '~/Navigation'
+
 import { OnboardingItemProps } from '..'
 
 const size = 2
 
+type UseNavigationProp = NativeStackNavigationProp<NavigatorProps, 'Welcome'>
+
 export function useOnboarding() {
   const [index, setIndex] = useState(0)
+
+  const navigation = useNavigation<UseNavigationProp>()
+  const { width } = useWindowDimensions()
 
   const ref = useRef<FlatList<OnboardingItemProps>>(null)
   const scrollX = useRef(new Animated.Value(0)).current
@@ -22,8 +31,6 @@ export function useOnboarding() {
       setIndex(viewableItems[0]?.index ?? 0)
     },
   ).current
-
-  const { width } = useWindowDimensions()
 
   const scrollEvent = useCallback(
     () =>
@@ -36,10 +43,10 @@ export function useOnboarding() {
   const scrollTo = useCallback(() => {
     if (index < size - 1) {
       ref.current?.scrollToIndex({ index: index + 1 })
+    } else {
+      navigation.navigate('Welcome')
     }
-  }, [index])
-
-  // const navigation = useNavigation()
+  }, [index, navigation])
 
   return {
     ref,
