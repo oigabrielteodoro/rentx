@@ -1,19 +1,26 @@
 import React from 'react'
 import { Image, View } from 'react-native'
-import { Feather } from '@expo/vector-icons'
 
-import { theme } from '~/ui'
 import { SCHEDULE_ICON } from '~/assets'
 
 import * as S from './Onboarding.styled'
 import { OnboardingItemProps } from './Onboarding.typed'
 
 import { Paginator } from './Paginator'
+import { NextButton } from './NextButton'
 import { useOnboarding } from './useOnboarding'
 
 export function Onboarding() {
-  const { ref, scrollX, viewConfig, fullSizeWidth, changeIndex, scrollEvent } =
-    useOnboarding()
+  const {
+    ref,
+    scrollX,
+    index,
+    viewConfig,
+    fullSizeWidth,
+    scrollTo,
+    changeIndex,
+    scrollEvent,
+  } = useOnboarding()
 
   return (
     <S.SafeAreaView>
@@ -38,14 +45,15 @@ export function Onboarding() {
         )}
       />
       <Paginator scrollX={scrollX} />
-      <S.ControlButton>
-        <Feather size={24} name='arrow-right' color={theme.colors.white} />
-      </S.ControlButton>
+      <NextButton
+        percentage={(index + 1) * (100 / onboarding.length)}
+        onPress={scrollTo}
+      />
     </S.SafeAreaView>
   )
 }
 
-const onboarding: OnboardingItemProps[] = [
+export const onboarding: OnboardingItemProps[] = [
   {
     image: SCHEDULE_ICON,
     title: 'Primeiro, escolha a data',

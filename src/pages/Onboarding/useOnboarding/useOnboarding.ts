@@ -6,7 +6,9 @@ import {
   useWindowDimensions,
   ViewToken,
 } from 'react-native'
-import { OnboardingItemProps } from '../Onboarding.typed'
+import { OnboardingItemProps } from '..'
+
+const size = 2
 
 export function useOnboarding() {
   const [index, setIndex] = useState(0)
@@ -17,9 +19,7 @@ export function useOnboarding() {
 
   const viewableItemsChanged = useRef(
     ({ viewableItems }: { viewableItems: ViewToken[] }) => {
-      if (viewableItems[0]?.index) {
-        setIndex(viewableItems[0].index)
-      }
+      setIndex(viewableItems[0]?.index ?? 0)
     },
   ).current
 
@@ -33,6 +33,12 @@ export function useOnboarding() {
     [scrollX],
   )
 
+  const scrollTo = useCallback(() => {
+    if (index < size - 1) {
+      ref.current?.scrollToIndex({ index: index + 1 })
+    }
+  }, [index])
+
   // const navigation = useNavigation()
 
   return {
@@ -41,6 +47,7 @@ export function useOnboarding() {
     scrollX,
     viewConfig,
     fullSizeWidth: width,
+    scrollTo,
     scrollEvent,
     changeIndex: viewableItemsChanged,
   }
