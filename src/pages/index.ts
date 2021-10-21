@@ -1,2 +1,2 @@
-export * from './Onboard'
 export * from './Welcome'
+export * from './Onboarding'
