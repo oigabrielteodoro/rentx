@@ -5,7 +5,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
 import { LOGO } from '~/assets'
 import { Button } from '~/ui'
-import { SIGN_IN } from '~/routes'
+import { SIGN_IN, SIGN_UP } from '~/routes'
 import { NavigatorProps } from '~/Navigation'
 
 import * as S from './Welcome.styled'
@@ -26,7 +26,11 @@ export function Welcome() {
           <S.Description>O que você deseja fazer?</S.Description>
           <S.Row>
             <Button onPress={() => navigate(SIGN_IN)}>Entrar</Button>
-            <Button variant='secondary' style={{ marginLeft: 16 }}>
+            <Button
+              variant='secondary'
+              style={{ marginLeft: 16 }}
+              onPress={() => navigate(SIGN_UP)}
+            >
               Cadastro
             </Button>
           </S.Row>
