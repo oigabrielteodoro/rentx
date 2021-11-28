@@ -8,6 +8,7 @@ import {
   ViewToken,
 } from 'react-native'
 
+import { WELCOME } from '~/routes'
 import { NavigatorProps } from '~/Navigation'
 
 import { OnboardingItemProps } from '..'
@@ -44,7 +45,7 @@ export function useOnboarding() {
     if (index < SIZE - 1) {
       ref.current?.scrollToIndex({ index: index + 1 })
     } else {
-      navigation.navigate('Welcome')
+      navigation.navigate(WELCOME)
     }
   }, [index, navigation])
 
