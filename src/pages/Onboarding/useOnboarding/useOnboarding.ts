@@ -12,7 +12,7 @@ import { NavigatorProps } from '~/Navigation'
 
 import { OnboardingItemProps } from '..'
 
-const size = 2
+const SIZE = 2
 
 type UseNavigationProp = NativeStackNavigationProp<NavigatorProps, 'Welcome'>
 
@@ -41,7 +41,7 @@ export function useOnboarding() {
   )
 
   const scrollTo = useCallback(() => {
-    if (index < size - 1) {
+    if (index < SIZE - 1) {
       ref.current?.scrollToIndex({ index: index + 1 })
     } else {
       navigation.navigate('Welcome')
