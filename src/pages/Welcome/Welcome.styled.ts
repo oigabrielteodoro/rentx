@@ -27,6 +27,7 @@ export const Description = styled.Text`
   align-self: center;
   color: ${theme.colors.neutral[300]};
   font-family: ${theme.font.inter.regular};
+  font-size: 16px;
 `
 
 export const Row = styled.View`
@@ -36,6 +37,12 @@ export const Row = styled.View`
   padding: 0 24px;
 `
 
-export const BackButton = styled.TouchableOpacity``
+export const BackButton = styled.TouchableOpacity`
+  align-self: center;
+  margin-top: 40px;
+`
 
-export const BackButtonText = styled.Text``
+export const BackButtonText = styled.Text`
+  font-family: ${theme.font.archivo.medium};
+  color: ${theme.colors.neutral[500]};
+`

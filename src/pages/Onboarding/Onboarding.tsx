@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image, View } from 'react-native'
 
-import { SCHEDULE_ICON } from '~/assets'
+import { CAR_ICON, SCHEDULE_ICON } from '~/assets'
 
 import * as S from './Onboarding.styled'
 import { OnboardingItemProps } from './Onboarding.typed'
@@ -61,7 +61,7 @@ export const onboarding: OnboardingItemProps[] = [
       'Você é quem define um período, e nós mostraremos os carros disponíveis.',
   },
   {
-    image: SCHEDULE_ICON,
+    image: CAR_ICON,
     title: 'Depois, escolha o carro',
     description:
       'Vários modelos para você dirigir seguro, com conforto e segurança.',
