@@ -7,7 +7,7 @@ import {
   Archivo_500Medium,
   Archivo_700Bold,
 } from '@expo-google-fonts/archivo'
-import { Inter_400Regular } from '@expo-google-fonts/inter'
+import { Inter_400Regular, Inter_500Medium } from '@expo-google-fonts/inter'
 import AppLoading from 'expo-app-loading'
 
 import { Navigation } from '~/Navigation'
@@ -18,6 +18,7 @@ export default function App() {
     Archivo_500Medium,
     Archivo_700Bold,
     Inter_400Regular,
+    Inter_500Medium,
   })
 
   if (!fontsLoaded) {

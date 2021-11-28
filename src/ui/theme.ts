@@ -7,6 +7,7 @@ export const theme = {
     },
     inter: {
       regular: 'Inter_400Regular',
+      medium: 'Inter_500Medium',
     },
   },
   colors: {
