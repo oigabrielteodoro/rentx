@@ -3,6 +3,7 @@ export const theme = {
     archivo: {
       regular: 'Archivo_400Regular',
       medium: 'Archivo_500Medium',
+      semibold: 'Archivo_600SemiBold',
       bold: 'Archivo_700Bold',
     },
     inter: {
@@ -22,6 +23,7 @@ export const theme = {
       500: '#dc1637',
     },
     neutral: {
+      50: '#f2f2fa',
       100: '#f4f5f6',
       200: '#ebebf0',
       300: '#dedee3',

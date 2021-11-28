@@ -5,6 +5,7 @@ import {
   useFonts,
   Archivo_400Regular,
   Archivo_500Medium,
+  Archivo_600SemiBold,
   Archivo_700Bold,
 } from '@expo-google-fonts/archivo'
 import { Inter_400Regular, Inter_500Medium } from '@expo-google-fonts/inter'
@@ -15,6 +16,7 @@ import { Navigation } from '~/Navigation'
 export default function App() {
   const [fontsLoaded] = useFonts({
     Archivo_400Regular,
+    Archivo_600SemiBold,
     Archivo_500Medium,
     Archivo_700Bold,
     Inter_400Regular,

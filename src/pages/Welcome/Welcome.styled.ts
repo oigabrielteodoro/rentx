@@ -17,7 +17,7 @@ export const Logo = styled.Image`
 export const Title = styled.Text`
   align-self: center;
   color: ${theme.colors.white};
-  font-family: ${theme.font.archivo.medium};
+  font-family: ${theme.font.archivo.semibold};
   font-size: 35px;
   line-height: 43px;
 `

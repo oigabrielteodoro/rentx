@@ -17,6 +17,7 @@ const modifiers = {
 export const Button = styled.TouchableOpacity<ButtonProps>`
   flex: 1;
   padding: 20px 0;
+  min-height: 56px;
   align-items: center;
   ${({ variant }) => modifiers[variant]}
 `
