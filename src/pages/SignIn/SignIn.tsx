@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'
-import { StatusBar, Platform, ScrollView } from 'react-native'
+import { KeyboardAvoidingView, ScrollView, StatusBar, View } from 'react-native'
+import { useNavigation } from '@react-navigation/core'
 import { Feather } from '@expo/vector-icons'
 
 import { Button, CheckBox, Input, theme } from '~/ui'
@@ -11,6 +12,8 @@ type InputRef = {
 }
 
 export function SignIn() {
+  const navigation = useNavigation()
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -22,69 +25,72 @@ export function SignIn() {
   return (
     <>
       <StatusBar barStyle='dark-content' />
-      <S.Container
-        style={{ flex: 1 }}
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        enabled
-      >
+
+      <S.BackButton onPress={navigation.goBack}>
+        <Feather
+          size={20}
+          name='chevron-left'
+          color={theme.colors.neutral[400]}
+        />
+      </S.BackButton>
+
+      <KeyboardAvoidingView enabled behavior='padding' style={{ flex: 1 }}>
         <ScrollView
-          keyboardShouldPersistTaps='handled'
           contentContainerStyle={{ flex: 1 }}
+          keyboardShouldPersistTaps='handled'
           showsVerticalScrollIndicator={false}
         >
-          <S.BackButton>
-            <Feather
-              size={20}
-              name='chevron-left'
-              color={theme.colors.neutral[400]}
-            />
-          </S.BackButton>
+          <S.Container>
+            <View>
+              <S.Title>Estamos quase lá.</S.Title>
+            </View>
 
-          <S.Title>Estamos quase lá.</S.Title>
+            <S.Description>
+              Faça seu login para começar uma experiência incrível.
+            </S.Description>
 
-          <S.Description>
-            Faça seu login para começar uma experiência incrível.
-          </S.Description>
+            <S.Form>
+              <Input
+                ref={emailRef}
+                placeholder='E-mail'
+                icon='email-outline'
+                onChangeText={setEmail}
+                value={email}
+                autoCorrect={false}
+                autoCapitalize='none'
+                keyboardType='email-address'
+                returnKeyType='next'
+                onSubmitEditing={() => passwordRef.current?.focus()}
+              />
+              <Input
+                ref={passwordRef}
+                secureTextEntry
+                placeholder='Senha'
+                icon='lock-outline'
+                style={{ marginTop: 8 }}
+                onChangeText={setPassword}
+                value={password}
+                returnKeyType='send'
+                onSubmitEditing={handleSubmit}
+              />
 
-          <S.Form>
-            <Input
-              ref={emailRef}
-              placeholder='E-mail'
-              icon='email-outline'
-              onChangeText={setEmail}
-              value={email}
-              autoCorrect={false}
-              autoCapitalize='none'
-              keyboardType='email-address'
-              returnKeyType='next'
-              onSubmitEditing={() => passwordRef.current?.focus()}
-            />
-            <Input
-              ref={passwordRef}
-              secureTextEntry
-              placeholder='Senha'
-              icon='lock-outline'
-              style={{ marginTop: 8 }}
-              onChangeText={setPassword}
-              value={password}
-              returnKeyType='send'
-              onSubmitEditing={handleSubmit}
-            />
+              <S.Row>
+                <CheckBox label='Lembrar-me' />
 
-            <S.Row>
-              <CheckBox label='Lembrar-me' />
+                <S.ForgotPassword>
+                  <S.ForgotPasswordText>
+                    Esqueci minha senha
+                  </S.ForgotPasswordText>
+                </S.ForgotPassword>
+              </S.Row>
 
-              <S.ForgotPassword>
-                <S.ForgotPasswordText>Esqueci minha senha</S.ForgotPasswordText>
-              </S.ForgotPassword>
-            </S.Row>
-
-            <Button style={{ marginTop: 32 }} onPress={handleSubmit}>
-              Entrar
-            </Button>
-          </S.Form>
+              <Button style={{ marginTop: 32 }} onPress={handleSubmit}>
+                Entrar
+              </Button>
+            </S.Form>
+          </S.Container>
         </ScrollView>
-      </S.Container>
+      </KeyboardAvoidingView>
     </>
   )
 }

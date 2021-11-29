@@ -1,22 +1,31 @@
 import styled from 'styled-components/native'
+import { getStatusBarHeight } from 'react-native-iphone-x-helper'
+
 import { theme } from '~/ui'
 
-export const Container = styled.KeyboardAvoidingView`
+export const Container = styled.View`
   background: ${theme.colors.white};
 `
 
 export const BackButton = styled.TouchableOpacity`
-  margin: 20px 32px;
+  position: absolute;
+  top: ${getStatusBarHeight() + 40}px;
+  left: 32px;
+  z-index: 1;
+`
+
+export const Content = styled.View`
+  flex: 1;
 `
 
 export const Title = styled.Text`
   color: ${theme.colors.neutral[900]};
   font-family: ${theme.font.archivo.semibold};
   margin-left: 32px;
-  margin-top: 80px;
   font-size: 38px;
   max-width: 180px;
   line-height: 43px;
+  margin-top: 180px;
 `
 
 export const Description = styled.Text`
