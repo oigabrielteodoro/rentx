@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import { StatusBar, Platform, ScrollView } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 
-import { Button, Input, theme } from '~/ui'
+import { Button, CheckBox, Input, theme } from '~/ui'
 
 import * as S from './SignIn.styled'
 
@@ -70,6 +70,14 @@ export function SignIn() {
               returnKeyType='send'
               onSubmitEditing={handleSubmit}
             />
+
+            <S.Row>
+              <CheckBox label='Lembrar-me' />
+
+              <S.ForgotPassword>
+                <S.ForgotPasswordText>Esqueci minha senha</S.ForgotPasswordText>
+              </S.ForgotPassword>
+            </S.Row>
 
             <Button style={{ marginTop: 32 }} onPress={handleSubmit}>
               Entrar

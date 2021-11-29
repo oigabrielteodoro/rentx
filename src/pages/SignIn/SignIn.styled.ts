@@ -32,3 +32,20 @@ export const Form = styled.View`
   padding: 0 24px;
   margin-top: 110px;
 `
+
+export const Row = styled.View`
+  flex-direction: row;
+  align-items: center;
+  margin-top: 32px;
+  justify-content: space-between;
+`
+
+export const ForgotPassword = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.8,
+})``
+
+export const ForgotPasswordText = styled.Text`
+  font-family: ${theme.font.inter.regular};
+  color: ${theme.colors.neutral[500]};
+  font-size: 14px;
+`

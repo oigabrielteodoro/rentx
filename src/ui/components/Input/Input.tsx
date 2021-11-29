@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, {
   useState,
   useRef,
@@ -5,7 +6,7 @@ import React, {
   forwardRef,
   ForwardRefRenderFunction,
 } from 'react'
-import { TextInputProps, TextInput } from 'react-native'
+import { TextInputProps } from 'react-native'
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons'
 
 import { theme } from '~/ui'
@@ -24,28 +25,21 @@ const InputElement: ForwardRefRenderFunction<InputRef, Props> = (
   { icon, style, secureTextEntry = false, ...rest },
   ref,
 ) => {
-  const inputRef = useRef(null)
+  const inputRef = useRef<any>(null)
 
   const [isFocused, setIsFocused] = useState(false)
   const [isVisible, setIsVisible] = useState(secureTextEntry)
 
   useImperativeHandle(ref, () => ({
     focus() {
-      if (inputRef.current) {
-        const current: TextInput = inputRef.current
-        current.focus()
-      }
+      inputRef.current?.focus()
     },
   }))
 
   function handleClickIcon() {
-    if (inputRef.current) {
-      const current: TextInput = inputRef.current
+    inputRef.current?.focus()
 
-      current.focus()
-
-      setIsFocused(true)
-    }
+    setIsFocused(true)
   }
 
   return (
