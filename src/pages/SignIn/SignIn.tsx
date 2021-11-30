@@ -1,53 +1,25 @@
-import React, { useState, useRef } from 'react'
+import React from 'react'
 import { StatusBar, View } from 'react-native'
-import { useNavigation } from '@react-navigation/core'
-import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import { Button, CheckBox, Input } from '~/ui'
-import { NavigatorProps } from '~/Navigation'
+
+import { useSignIn } from './useSignIn'
 
 import * as S from './SignIn.styled'
 
-type InputRef = {
-  focus: () => void
-}
-
-type UseNavigationProp = NativeStackNavigationProp<NavigatorProps, 'Welcome'>
-
 export function SignIn() {
-  const navigation = useNavigation<UseNavigationProp>()
-
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-
-  const [errors, setErrors] = useState({
-    email: '',
-    password: '',
-  })
-
-  const emailRef = useRef<InputRef>(null)
-  const passwordRef = useRef<InputRef>(null)
-
-  function handleSubmit() {
-    if (!email) {
-      emailRef.current?.focus()
-      return setErrors(() => ({
-        email: 'E-mail obrigatório',
-        password: '',
-      }))
-    }
-
-    if (!password) {
-      passwordRef.current?.focus()
-      return setErrors(() => ({
-        email: '',
-        password: 'Senha obrigatória',
-      }))
-    }
-
-    navigation.navigate('Home')
-  }
+  const {
+    errors,
+    email,
+    password,
+    emailRef,
+    passwordRef,
+    setEmail,
+    setPassword,
+    handleSubmit,
+    goBack,
+  } = useSignIn()
 
   return (
     <S.Container>
@@ -109,7 +81,7 @@ export function SignIn() {
         <S.Separator />
       </S.SeparatorArea>
 
-      <S.BackButton onPress={navigation.goBack}>
+      <S.BackButton onPress={goBack}>
         <S.BackButtonText>Voltar para início</S.BackButtonText>
       </S.BackButton>
     </S.Container>
