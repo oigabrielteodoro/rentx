@@ -19,7 +19,7 @@ export const Title = styled.Text`
 `
 
 export const Description = styled.Text`
-  margin-top: 24px;
+  margin-top: 8px;
   max-width: 204px;
   line-height: 25px;
   margin-left: 32px;

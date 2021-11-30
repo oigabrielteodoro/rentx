@@ -1,5 +1,5 @@
 import React from 'react'
-import { StatusBar, View } from 'react-native'
+import { Animated, StatusBar } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import { Button, CheckBox, Input } from '~/ui'
@@ -15,6 +15,9 @@ export function SignIn() {
     password,
     emailRef,
     passwordRef,
+    titleY,
+    keyboardWillShowAnimation,
+    keyboardWillHideAnimation,
     setEmail,
     setPassword,
     handleSubmit,
@@ -25,8 +28,12 @@ export function SignIn() {
     <S.Container>
       <StatusBar barStyle='dark-content' />
 
-      <KeyboardAwareScrollView>
-        <View>
+      <KeyboardAwareScrollView
+        enableAutomaticScroll={false}
+        onKeyboardWillHide={() => keyboardWillHideAnimation.start()}
+        onKeyboardWillShow={() => keyboardWillShowAnimation.start()}
+      >
+        <Animated.View style={{ transform: [{ translateY: titleY }] }}>
           <S.Title>Estamos quase lá.</S.Title>
 
           <S.Description>
@@ -72,7 +79,7 @@ export function SignIn() {
               Entrar
             </Button>
           </S.Form>
-        </View>
+        </Animated.View>
       </KeyboardAwareScrollView>
 
       <S.SeparatorArea>
