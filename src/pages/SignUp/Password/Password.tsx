@@ -2,6 +2,8 @@ import React, { useRef, useCallback } from 'react'
 
 import { Input, Button } from '~/ui'
 
+import { useSignUp } from '../SignUpContext'
+
 import * as S from '../SignUp.styled'
 
 type InputRef = {
@@ -12,7 +14,11 @@ export function Password() {
   const passwordRef = useRef<InputRef>(null)
   const confirmPasswordRef = useRef<InputRef>(null)
 
-  const handleOnSubmit = useCallback(() => {}, [])
+  const { handleSuccess } = useSignUp()
+
+  const handleOnSubmit = useCallback(() => {
+    handleSuccess()
+  }, [handleSuccess])
 
   return (
     <>

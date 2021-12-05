@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Octicons } from '@expo/vector-icons'
 import { Animated, StatusBar } from 'react-native'
 import { useNavigation } from '@react-navigation/core'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { match } from 'ts-pattern'
 
-import { BackButton } from '~/ui'
+import { BackButton, Success } from '~/ui'
+import { NavigatorProps } from '~/Navigation'
 
 import { User } from './User'
 import { Password } from './Password'
@@ -14,6 +16,8 @@ import { SignUpProvider, useSignUp } from './SignUpContext'
 import { useAnimations } from './useAnimations'
 
 import * as S from './SignUp.styled'
+
+type UseNavigationProp = NativeStackNavigationProp<NavigatorProps, 'Home'>
 
 function SignUpScreen() {
   const {
@@ -27,12 +31,15 @@ function SignUpScreen() {
     onKeyboardWillShow,
   } = useAnimations()
 
-  const { goBack } = useNavigation()
+  const { goBack, navigate } = useNavigation<UseNavigationProp>()
 
-  const { actualStage, colorToDot, handleOnChangeStage, handleMoveToLeft } =
-    useSignUp()
-
-  useEffect(() => {}, [])
+  const {
+    actualStage,
+    isSuccess,
+    colorToDot,
+    handleOnChangeStage,
+    handleMoveToLeft,
+  } = useSignUp()
 
   function handleOnBack() {
     if (actualStage === 'user') {
@@ -41,6 +48,16 @@ function SignUpScreen() {
 
     handleMoveToLeft()
     handleOnChangeStage('user')
+  }
+
+  if (isSuccess) {
+    return (
+      <Success
+        title='Conta criada!'
+        description='Agora é só fazer login e aproveitar.'
+        onPress={() => navigate('Home')}
+      />
+    )
   }
 
   return (
