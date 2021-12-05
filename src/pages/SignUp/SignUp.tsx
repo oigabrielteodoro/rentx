@@ -1,6 +1,7 @@
-import React from 'react'
-import { Animated, StatusBar } from 'react-native'
+import React, { useEffect } from 'react'
 import { Octicons } from '@expo/vector-icons'
+import { Animated, StatusBar } from 'react-native'
+import { useNavigation } from '@react-navigation/core'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { match } from 'ts-pattern'
 
@@ -8,29 +9,45 @@ import { BackButton } from '~/ui'
 
 import { User } from './User'
 import { Password } from './Password'
+import { SignUpProvider, useSignUp } from './SignUpContext'
 
 import { useAnimations } from './useAnimations'
 
 import * as S from './SignUp.styled'
-import { SignUpProvider, useSignUp } from './SignUpContext'
 
 function SignUpScreen() {
   const {
     formY,
+    formX,
     pageOpacity,
+    formOpacity,
     descriptionY,
     titleOpacity,
     onKeyboardWillHide,
     onKeyboardWillShow,
   } = useAnimations()
 
-  const { actualStage, colorToDot } = useSignUp()
+  const { goBack } = useNavigation()
+
+  const { actualStage, colorToDot, handleOnChangeStage, handleMoveToLeft } =
+    useSignUp()
+
+  useEffect(() => {}, [])
+
+  function handleOnBack() {
+    if (actualStage === 'user') {
+      return goBack()
+    }
+
+    handleMoveToLeft()
+    handleOnChangeStage('user')
+  }
 
   return (
     <S.Container>
       <StatusBar barStyle='dark-content' />
       <S.Header>
-        <BackButton />
+        <BackButton onPress={handleOnBack} />
 
         <S.PageArea style={{ opacity: pageOpacity }}>
           <Octicons size={10} name='primitive-dot' color={colorToDot('user')} />
@@ -52,7 +69,12 @@ function SignUpScreen() {
           Faça seu cadastro de forma fácil e simples.
         </S.Description>
 
-        <Animated.View style={{ transform: [{ translateY: formY }] }}>
+        <Animated.View
+          style={{
+            transform: [{ translateY: formY }, { translateX: formX }],
+            opacity: formOpacity,
+          }}
+        >
           {match(actualStage)
             .with('user', () => <User />)
             .with('password', () => <Password />)

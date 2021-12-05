@@ -15,13 +15,17 @@ type Stage = 'user' | 'password'
 
 type SignUpContextData = {
   actualStage: Stage
+  direction?: Stage
   colorToDot: (stageToCompare: Stage) => string
+  handleMoveToLeft: () => void
+  handleMoveToRight: () => void
   handleOnChangeStage: (newStage: Stage) => void
 }
 
 const SignUpContext = createContext({} as SignUpContextData)
 
 export function SignUpProvider({ children }: Props) {
+  const [direction, setDirection] = useState<Stage>()
   const [actualStage, setActualStage] = useState<Stage>('user')
 
   const colorToDot = useCallback(
@@ -37,7 +41,14 @@ export function SignUpProvider({ children }: Props) {
 
   return (
     <SignUpContext.Provider
-      value={{ actualStage, colorToDot, handleOnChangeStage: setActualStage }}
+      value={{
+        direction,
+        actualStage,
+        colorToDot,
+        handleOnChangeStage: setActualStage,
+        handleMoveToLeft: () => setDirection('user'),
+        handleMoveToRight: () => setDirection('password'),
+      }}
     >
       {children}
     </SignUpContext.Provider>

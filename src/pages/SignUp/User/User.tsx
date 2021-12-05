@@ -2,6 +2,7 @@ import React, { useRef, useCallback } from 'react'
 
 import { Input, Button } from '~/ui'
 
+import { useSignUp } from '../SignUpContext'
 import * as S from '../SignUp.styled'
 
 type InputRef = {
@@ -11,7 +12,11 @@ type InputRef = {
 export function User() {
   const emailRef = useRef<InputRef>(null)
 
-  const handleOnSubmit = useCallback(() => {}, [])
+  const { handleMoveToRight } = useSignUp()
+
+  const handleOnSubmit = useCallback(() => {
+    handleMoveToRight()
+  }, [handleMoveToRight])
 
   return (
     <>
