@@ -3,8 +3,8 @@ import { StatusBar } from 'react-native'
 import { useNavigation } from '@react-navigation/core'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
-import { LOGO } from '~/assets'
 import { Button } from '~/ui'
+import { LOGO } from '~/assets'
 import { SIGN_IN, SIGN_UP } from '~/routes'
 import { NavigatorProps } from '~/Navigation'
 
