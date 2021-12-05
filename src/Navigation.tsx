@@ -9,6 +9,7 @@ export type NavigatorProps = {
   Onboarding: undefined
   SignIn: undefined
   SignUp: undefined
+  Home: undefined
 }
 
 const Stack = createNativeStackNavigator<NavigatorProps>()

@@ -2947,6 +2947,11 @@ decode-uri-component@^0.2.0:
   resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
   integrity sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
 
+dedent@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/dedent/-/dedent-0.6.0.tgz#0e6da8f0ce52838ef5cec5c8f9396b0c1b64a3cb"
+  integrity sha1-Dm2o8M5Sg471zsXI+TlrDBtko8s=
+
 deep-assign@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/deep-assign/-/deep-assign-3.0.0.tgz#c8e4c4d401cba25550a2f0f486a2e75bc5f219a2"
@@ -4903,6 +4908,20 @@ loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.3.1, loose-envify@^1.4
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
 
+lottie-ios@3.2.3:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/lottie-ios/-/lottie-ios-3.2.3.tgz#d5a029ccce611603d178ea7ba725c1446f2310b4"
+  integrity sha512-mubYMN6+1HXa8z3EJKBvNBkl4UoVM4McjESeB2PgvRMSngmJtC5yUMRdhbbrIAn5Liu3hFGao/14s5hQIgtkRQ==
+
+lottie-react-native@4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/lottie-react-native/-/lottie-react-native-4.0.2.tgz#d0b7a479995b4bfdf5402671e096f15b7ef2a7d8"
+  integrity sha512-8X5SV8X+es5dJwUGYcSyRIbHIPeWIcUH6PiRaReUEy+6s1d+NLBp3rj4+9I75F1ZN0nbFGNkrgypnGsXOAXBTw==
+  dependencies:
+    invariant "^2.2.2"
+    prop-types "^15.5.10"
+    react-native-safe-modules "^1.0.3"
+
 lru-cache@^4.0.1:
   version "4.1.5"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-4.1.5.tgz#8bbe50ea85bed59bc9e33dcab8235ee9bcf443cd"
@@ -5881,7 +5900,7 @@ promise@^8.0.3:
   dependencies:
     asap "~2.0.6"
 
-prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.10, prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -5961,15 +5980,30 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
-react-native-iphone-x-helper@1.3.1:
+react-native-iphone-x-helper@1.3.1, react-native-iphone-x-helper@^1.0.3:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.3.1.tgz#20c603e9a0e765fd6f97396638bdeb0e5a60b010"
   integrity sha512-HOf0jzRnq2/aFUcdCJ9w9JGzN3gdEg0zFE4FyYlp4jtidqU03D5X7ZegGKfT1EWteR0gPBGp9ye5T5FvSWi9Yg==
+
+react-native-keyboard-aware-scroll-view@0.9.5:
+  version "0.9.5"
+  resolved "https://registry.yarnpkg.com/react-native-keyboard-aware-scroll-view/-/react-native-keyboard-aware-scroll-view-0.9.5.tgz#e2e9665d320c188e6b1f22f151b94eb358bf9b71"
+  integrity sha512-XwfRn+T/qBH9WjTWIBiJD2hPWg0yJvtaEw6RtPCa5/PYHabzBaWxYBOl0usXN/368BL1XktnZPh8C2lmTpOREA==
+  dependencies:
+    prop-types "^15.6.2"
+    react-native-iphone-x-helper "^1.0.3"
 
 react-native-safe-area-context@3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.2.0.tgz#06113c6b208f982d68ab5c3cebd199ca93db6941"
   integrity sha512-k2Nty4PwSnrg9HwrYeeE+EYqViYJoOFwEy9LxL5RIRfoqxAq/uQXNGwpUg2/u4gnKpBbEPa9eRh15KKMe/VHkA==
+
+react-native-safe-modules@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-safe-modules/-/react-native-safe-modules-1.0.3.tgz#f5f29bb9d09d17581193843d4173ad3054f74890"
+  integrity sha512-DUxti4Z+AgJ/ZsO5U7p3uSCUBko8JT8GvFlCeOXk9bMd+4qjpoDvMYpfbixXKgL88M+HwmU/KI1YFN6gsQZyBA==
+  dependencies:
+    dedent "^0.6.0"
 
 react-native-screens@~3.4.0:
   version "3.4.0"
@@ -6941,6 +6975,11 @@ ts-interface-checker@^0.1.9:
   version "0.1.13"
   resolved "https://registry.yarnpkg.com/ts-interface-checker/-/ts-interface-checker-0.1.13.tgz#784fd3d679722bc103b1b4b8030bcddb5db2a699"
   integrity sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==
+
+ts-pattern@3.3.3:
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/ts-pattern/-/ts-pattern-3.3.3.tgz#d15f4417b3f9161089da945885771c13606fd06a"
+  integrity sha512-Z5EFi6g6wyX3uDFHqxF5W5c5h663oZg9O6aOiAT7fqNu0HPSfCxtHzrQ7SblTy738Mrg2Ezorky8H5aUOm8Pvg==
 
 tsconfig-paths@^3.11.0:
   version "3.11.0"

@@ -28,3 +28,16 @@ export const SecureIcon = styled.View`
   position: absolute;
   right: 20px;
 `
+
+export const Error = styled.View`
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 8px;
+  margin-top: 12px;
+`
+
+export const ErrorText = styled.Text`
+  color: ${theme.colors.red[500]};
+  font-family: ${theme.font.inter.regular};
+  margin-left: 8px;
+`

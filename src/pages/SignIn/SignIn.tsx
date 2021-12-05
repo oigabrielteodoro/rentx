@@ -1,45 +1,39 @@
-import React, { useState, useRef } from 'react'
-import { StatusBar, Platform, ScrollView } from 'react-native'
-import { Feather } from '@expo/vector-icons'
+import React from 'react'
+import { Animated, StatusBar } from 'react-native'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
-import { Button, Input, theme } from '~/ui'
+import { Button, CheckBox, Input } from '~/ui'
+
+import { useSignIn } from './useSignIn'
 
 import * as S from './SignIn.styled'
 
-type InputRef = {
-  focus: () => void
-}
-
 export function SignIn() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-
-  const emailRef = useRef<InputRef>(null)
-  const passwordRef = useRef<InputRef>(null)
-
-  function handleSubmit() {}
+  const {
+    errors,
+    email,
+    password,
+    emailRef,
+    passwordRef,
+    translateY,
+    keyboardWillShowAnimation,
+    keyboardWillHideAnimation,
+    setEmail,
+    setPassword,
+    handleSubmit,
+    goBack,
+  } = useSignIn()
 
   return (
-    <>
+    <S.Container>
       <StatusBar barStyle='dark-content' />
-      <S.Container
-        style={{ flex: 1 }}
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        enabled
-      >
-        <ScrollView
-          keyboardShouldPersistTaps='handled'
-          contentContainerStyle={{ flex: 1 }}
-          showsVerticalScrollIndicator={false}
-        >
-          <S.BackButton>
-            <Feather
-              size={20}
-              name='chevron-left'
-              color={theme.colors.neutral[400]}
-            />
-          </S.BackButton>
 
+      <KeyboardAwareScrollView
+        enableAutomaticScroll={false}
+        onKeyboardWillHide={() => keyboardWillHideAnimation.start()}
+        onKeyboardWillShow={() => keyboardWillShowAnimation.start()}
+      >
+        <Animated.View style={{ transform: [{ translateY }] }}>
           <S.Title>Estamos quase lá.</S.Title>
 
           <S.Description>
@@ -58,6 +52,7 @@ export function SignIn() {
               keyboardType='email-address'
               returnKeyType='next'
               onSubmitEditing={() => passwordRef.current?.focus()}
+              errorMessage={errors?.email}
             />
             <Input
               ref={passwordRef}
@@ -69,14 +64,33 @@ export function SignIn() {
               value={password}
               returnKeyType='send'
               onSubmitEditing={handleSubmit}
+              errorMessage={errors?.password}
             />
+
+            <S.Row>
+              <CheckBox label='Lembrar-me' />
+
+              <S.ForgotPassword>
+                <S.ForgotPasswordText>Esqueci minha senha</S.ForgotPasswordText>
+              </S.ForgotPassword>
+            </S.Row>
 
             <Button style={{ marginTop: 32 }} onPress={handleSubmit}>
               Entrar
             </Button>
           </S.Form>
-        </ScrollView>
-      </S.Container>
-    </>
+        </Animated.View>
+      </KeyboardAwareScrollView>
+
+      <S.SeparatorArea>
+        <S.Separator />
+        <S.SeparatorText>OU</S.SeparatorText>
+        <S.Separator />
+      </S.SeparatorArea>
+
+      <S.BackButton onPress={goBack}>
+        <S.BackButtonText>Voltar para início</S.BackButtonText>
+      </S.BackButton>
+    </S.Container>
   )
 }
