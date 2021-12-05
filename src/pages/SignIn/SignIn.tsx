@@ -7,7 +7,6 @@ import { Button, CheckBox, Input } from '~/ui'
 import { useSignIn } from './useSignIn'
 
 import * as S from './SignIn.styled'
-import { useKeyboardAnimation } from '~/hooks'
 
 export function SignIn() {
   const {
@@ -16,14 +15,14 @@ export function SignIn() {
     password,
     emailRef,
     passwordRef,
+    translateY,
+    keyboardWillShowAnimation,
+    keyboardWillHideAnimation,
     setEmail,
     setPassword,
     handleSubmit,
     goBack,
   } = useSignIn()
-
-  const { translateY, willHideKeyboard, willShowKeyboard } =
-    useKeyboardAnimation()
 
   return (
     <S.Container>
@@ -31,8 +30,8 @@ export function SignIn() {
 
       <KeyboardAwareScrollView
         enableAutomaticScroll={false}
-        onKeyboardWillHide={() => willHideKeyboard.start()}
-        onKeyboardWillShow={() => willShowKeyboard.start()}
+        onKeyboardWillHide={() => keyboardWillHideAnimation.start()}
+        onKeyboardWillShow={() => keyboardWillShowAnimation.start()}
       >
         <Animated.View style={{ transform: [{ translateY }] }}>
           <S.Title>Estamos quase lá.</S.Title>

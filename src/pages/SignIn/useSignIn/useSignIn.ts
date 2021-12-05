@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react'
+import { Animated } from 'react-native'
 import { useNavigation } from '@react-navigation/core'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
@@ -23,6 +24,17 @@ export function useSignIn() {
 
   const emailRef = useRef<InputRef>(null)
   const passwordRef = useRef<InputRef>(null)
+  const translateY = useRef(new Animated.Value(0)).current
+
+  const keyboardWillShowAnimation = Animated.spring(translateY, {
+    toValue: -125,
+    useNativeDriver: true,
+  })
+
+  const keyboardWillHideAnimation = Animated.spring(translateY, {
+    toValue: 0,
+    useNativeDriver: true,
+  })
 
   function handleSubmit() {
     if (!email) {
@@ -50,6 +62,9 @@ export function useSignIn() {
     password,
     emailRef,
     passwordRef,
+    translateY,
+    keyboardWillHideAnimation,
+    keyboardWillShowAnimation,
     setEmail,
     setPassword,
     handleSubmit,
