@@ -1,11 +1,11 @@
 import { useRef } from 'react'
 import { Animated } from 'react-native'
 
-export function useKeyboardAnimation() {
+export function useKeyboardAnimation(toValue: number) {
   const translateY = useRef(new Animated.Value(0)).current
 
   const willShowKeyboard = Animated.spring(translateY, {
-    toValue: -125,
+    toValue,
     useNativeDriver: true,
   })
 
