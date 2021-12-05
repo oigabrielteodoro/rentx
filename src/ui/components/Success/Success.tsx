@@ -17,6 +17,7 @@ type Props = {
 export function Success({ title, description, onPress }: Props) {
   const titleOpacity = useRef(new Animated.Value(0)).current
   const descriptionOpacity = useRef(new Animated.Value(0)).current
+  const buttonOpacity = useRef(new Animated.Value(0)).current
 
   useEffect(() => {
     Animated.timing(titleOpacity, {
@@ -32,7 +33,14 @@ export function Success({ title, description, onPress }: Props) {
       duration: 600,
       delay: 300,
     }).start()
-  }, [titleOpacity, descriptionOpacity])
+
+    Animated.timing(buttonOpacity, {
+      toValue: 1,
+      useNativeDriver: true,
+      duration: 900,
+      delay: 300,
+    }).start()
+  }, [titleOpacity, descriptionOpacity, buttonOpacity])
 
   return (
     <>
@@ -53,13 +61,15 @@ export function Success({ title, description, onPress }: Props) {
         <S.Description style={{ opacity: descriptionOpacity }}>
           {description}
         </S.Description>
-        <Button
-          variant='secondary'
-          style={{ maxHeight: 58, minWidth: 80 }}
-          onPress={onPress}
-        >
-          Ok
-        </Button>
+        <Animated.View style={{ opacity: buttonOpacity }}>
+          <Button
+            variant='secondary'
+            style={{ maxHeight: 58, minWidth: 80 }}
+            onPress={onPress}
+          >
+            Ok
+          </Button>
+        </Animated.View>
       </S.Container>
     </>
   )

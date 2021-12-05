@@ -44,24 +44,25 @@ export function useAnimations() {
       useNativeDriver: true,
     }).start()
 
-    Animated.spring(titleOpacity, {
+    Animated.timing(titleOpacity, {
       toValue: 1,
       useNativeDriver: true,
     }).start()
 
-    Animated.spring(pageOpacity, {
+    Animated.timing(pageOpacity, {
       toValue: 0,
       useNativeDriver: true,
     }).start()
   }
 
   function onKeyboardWillShow() {
-    Animated.spring(titleOpacity, {
+    Animated.timing(titleOpacity, {
       toValue: 0,
       useNativeDriver: true,
+      duration: 150,
     }).start()
 
-    Animated.spring(pageOpacity, {
+    Animated.timing(pageOpacity, {
       toValue: 1,
       useNativeDriver: true,
     }).start()
